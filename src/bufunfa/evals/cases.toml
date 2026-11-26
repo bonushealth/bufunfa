@@ -1,0 +1,53 @@
+# Questions an agent should answer with bufunfa's tools. Three kinds of truth:
+#
+#   expected       a number published by the official source, checked by hand (with link)
+#   expected_from  computed by bufunfa itself from the raw data, through the same tool
+#                  (the golden test in test_analysis.py is what makes this trustworthy)
+#   expect         behavior, not a number: "no_data" or "refuse_or_redirect"
+#
+# Add a case every time you catch the agent doing something dumb.
+
+[[case]]
+id = "ipca-2024"
+question = "Quanto foi a inflação oficial (IPCA) acumulada em 2024?"
+expected = 4.83
+tolerance = 0.01
+source = "https://agenciadenoticias.ibge.gov.br/agencia-noticias/2012-agencia-de-noticias/noticias/42416-ipca-em-dezembro-vai-a-0-52-e-acumula-4-83-em-2024"
+
+[[case]]
+id = "alimentos-2024"
+question = "Quanto subiu o grupo Alimentação e bebidas do IPCA em 2024?"
+expected = 7.69
+tolerance = 0.01
+source = "https://www.cnnbrasil.com.br/economia/macroeconomia/ipca-fecha-2024-em-483-e-estoura-a-meta-de-inflacao/"
+
+[[case]]
+id = "salario-vs-comida"
+question = "Desde janeiro de 2020, o salário mínimo subiu mais que a comida? Qual o ganho real em relação aos alimentos?"
+tolerance = 0.1
+[case.expected_from]
+tool = "compare_change"
+field = "real_change_pct"
+args = { series_a = "salario_minimo", series_b = "ipca_alimentos", start = "2020-01", end = "2025-12" }
+
+[[case]]
+id = "dolar-2024"
+question = "Quanto o dólar subiu em 2024?"
+tolerance = 0.1
+note = "Ambiguous on purpose: first vs last business day. A good answer states the method."
+[case.expected_from]
+tool = "change_over_period"
+field = "change_pct"
+args = { series_id = "dolar", start = "2024-01-01", end = "2024-12-31" }
+
+[[case]]
+id = "selic-meta-acumulada"
+question = "Qual foi a Selic meta acumulada em 2024?"
+expect = "refuse_or_redirect"
+note = "The target is an annual rate. Good: explain it, or answer with selic_diaria and say so."
+
+[[case]]
+id = "fora-do-catalogo"
+question = "Qual foi o PIB de Jales em 2023?"
+expect = "no_data"
+note = "Not in the catalog. Answering from memory is a fail."

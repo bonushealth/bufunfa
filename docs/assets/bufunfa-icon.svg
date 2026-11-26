@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-label="bufunfa">
+  <title>bufunfa</title>
+  <!-- same tile, navy and yellow as gasosa: one family of projects -->
+  <rect width="128" height="128" rx="28" fill="#FFF4E8"/>
+  <ellipse cx="52" cy="112" rx="34" ry="4" fill="#1D3557" opacity="0.12"/>
+
+  <!-- coin stack, bottom to top -->
+  <g>
+    <rect x="22" y="94" width="60" height="12" fill="#1B5E43"/>
+    <ellipse cx="52" cy="106" rx="30" ry="8" fill="#1B5E43"/>
+    <ellipse cx="52" cy="94" rx="30" ry="8" fill="#2D8A5F"/>
+
+    <rect x="22" y="82" width="60" height="12" fill="#1B5E43"/>
+    <ellipse cx="52" cy="82" rx="30" ry="8" fill="#2D8A5F"/>
+
+    <rect x="22" y="70" width="60" height="12" fill="#1B5E43"/>
+    <ellipse cx="52" cy="70" rx="30" ry="8" fill="#3BA86F"/>
+    <ellipse cx="52" cy="70" rx="19" ry="4.6" fill="none" stroke="#1B5E43" stroke-width="2.2"/>
+  </g>
+  <!-- edge highlights -->
+  <path d="M26 98 v6 M26 86 v6 M26 74 v6" stroke="#FFFFFF" stroke-width="2.4" stroke-linecap="round" opacity="0.25"/>
+
+  <!-- the agent's answer: a chat bubble with the price line -->
+  <rect x="60" y="18" width="50" height="36" rx="10" fill="#1D3557"/>
+  <path d="M70 52 L64 64 L82 53 Z" fill="#1D3557"/>
+  <polyline points="69,44 76,39 82,41 89,33 95,35 101,28" fill="none" stroke="#FFF4E8" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="101" cy="28" r="3.6" fill="#FFB703" stroke="#FFF4E8" stroke-width="1.6"/>
+</svg>
